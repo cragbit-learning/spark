@@ -1,0 +1,2 @@
+NasaLog [host=hitiij.hitachi.co.jp, logname=-, time=804578464, method=GET, url=/, response=200, bytes=7074]
+NasaLog [host=www-a1.proxy.aol.com, logname=-, time=804571269, method=GET, url=/shuttle/countdown/, response=200, bytes=3985]
