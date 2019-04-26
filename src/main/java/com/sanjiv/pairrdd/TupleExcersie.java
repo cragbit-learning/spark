@@ -10,6 +10,7 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.PairFunction;
 
 import scala.Tuple2;
@@ -66,10 +67,28 @@ public class TupleExcersie {
 						return tuple;
 					}
 				});
+
+		//applying filter to get the only those records who see the profile_id=100
 		
-		JavaPairRDD<String, List<String>> filteredProfile = customTupleProfile.filter(profile -> profile._2.contains("100"));
+		// JavaPairRDD<String, List<String>> filteredProfile =
+		// customTupleProfile.filter(profile -> profile._2.contains("100"));
+
+		//another solution
+		
+		JavaPairRDD<String, String> filteredProfile = customTupleProfile
+				.mapValues(new Function<List<String>, String>() {
+
+					@Override
+					public String call(List<String> v1) throws Exception {
+						if (v1.contains("100"))
+							return "100";
+						else
+							return null;
+					}
+				}).filter(filterProfileValue -> filterProfileValue._2 != null);
+
 		filteredProfile.coalesce(1).saveAsTextFile("output/profile");
-		
+
 		jsc.close();
 
 	}
