@@ -1,7 +1,7 @@
 package com.sanjiv.pairrdd;
 
 import java.io.Serializable;
-import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Level;
@@ -101,8 +101,15 @@ public class BedroomAveragePrice {
 //			}
 //		}, true, 1);
 		
+		//sorting based on key
+		JavaPairRDD<Integer, Bedroom> sortedRooms = rooms.sortByKey(true);
+		List<Tuple2<Integer, Bedroom>> sRooms = sortedRooms.collect();
 		
-		Map<Integer, Bedroom> roomAveragePrice = rooms.collectAsMap();
+		for(Tuple2<Integer, Bedroom> t : sRooms ) {
+			System.out.println(t._1 + ">>>>>"  + t._2.getCount() + ">>>>>>" + t._2.getAvgPrice());
+		}
+		
+		Map<Integer, Bedroom> roomAveragePrice = sortedRooms.collectAsMap();
 		for (java.util.Map.Entry<Integer, Bedroom> r : roomAveragePrice.entrySet()) {
 			logger.info(r.getKey() + "---> " + r.getValue().getCount()  + " ----> " + r.getValue().getAvgPrice());
 		}
