@@ -53,6 +53,7 @@ public class HousePriceProblem {
 		
 		/* sample output
 		 * 
+
 +----------------+------------------+----------------+----------------+----------+
 |        Location|        avg(Price)|max(Price SQ Ft)|min(Price SQ Ft)|max(Price)|
 +----------------+------------------+----------------+----------------+----------+

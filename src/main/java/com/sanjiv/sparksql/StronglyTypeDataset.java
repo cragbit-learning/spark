@@ -15,7 +15,7 @@ public class StronglyTypeDataset {
 
 	public static void main(String[] args) {
 
-		Logger logger = Logger.getLogger(HousePriceProblem.class);
+		Logger logger = Logger.getLogger(StronglyTypeDataset.class);
 		Logger.getLogger("org").setLevel(Level.ERROR);
 		System.setProperty("hadoop.home.dir", "C:\\hadoop");
 
@@ -67,5 +67,23 @@ public class StronglyTypeDataset {
 		
 		session.stop();
 	}
+	
+	
+	/*
+	 * sample output
+	 * 
+ +-------+--------------------+-----------+--------------+
+|country|          occupation|ageMidPoint|salaryMidPoint|
++-------+--------------------+-----------+--------------+
+|Albania|                null|         27|          null|
+|Albania|Back-end web deve...|         27|          5000|
+|Albania|Full-stack web de...|         27|          5000|
+|Albania|Full-stack web de...|         27|          5000|
+|Albania|Back-end web deve...|         22|          5000|
+|Albania|Full-stack web de...|         22|         15000|
+|Albania|Back-end web deve...|         22|         15000|
++-------+--------------------+-----------+--------------+
+	 * 
+	 */
 
 }
